@@ -1,7 +1,9 @@
 # minishell
-<h3>Working in progress</h3>
+<h2>Working in progress</h2>
 
-<h2>Minishell is a pretty lenghty project. The hardest challenge so far. You have to do a lot of things and make sure everything runs smoothly and that it doesn't crash.
+<h3>Hey marinaldo when you write some stuff in the code tell me, of course we will check the commits, just let me know what you did</h3
+
+<h4>Minishell is a pretty lenghty project. The hardest challenge so far. You have to do a lot of things and make sure everything runs smoothly and that it doesn't crash.
 
 Minishell has 3 important parts:
 
@@ -9,7 +11,7 @@ Minishell has 3 important parts:
 
 - Parsing what you've written.
 
-- Executing what you've parsed.</h2>
+- Executing what you've parsed.</h4>
 
 <a href="https://brennan.io/2015/01/16/write-a-shell-in-c/">Tutorial minishell in C</a>
 
