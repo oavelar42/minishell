@@ -6,7 +6,7 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 21:44:00 by oavelar           #+#    #+#              #
-#    Updated: 2021/06/21 21:55:06 by oavelar          ###   ########.fr        #
+#    Updated: 2021/06/22 21:45:50 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= minishell
 
 CC			= gcc
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror -fsanitize=address
 
 INCLUDE		= ./minishell.h
 
@@ -37,11 +37,11 @@ all : $(NAME)
 
 clean :
 	@$(RM) $(OBJ)
-	@echo "\033[0;31m ---- all clean! ---- \033[0m"
+	@echo "$(RED)---- All clean! ---- $(COLOR_OFF)"
 
 fclean :
 	@$(RM) $(NAME)
-	@echo "\033[0;31m ---- all cleared! ---- \033[0m"
+	@echo "$(RED) ---- All cleared! ---- $(COLOR_OFF)"
 
 re : fclean all
 
