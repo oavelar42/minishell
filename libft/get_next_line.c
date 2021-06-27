@@ -6,7 +6,7 @@
 /*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 09:30:45 by oavelar           #+#    #+#             */
-/*   Updated: 2021/06/24 21:54:45 by oavelar          ###   ########.fr       */
+/*   Updated: 2021/06/26 10:48:08 by oavelar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,27 @@ int	get_next_line(int fd, char **line)
 {
 	static char		*next[OPEN_MAX];
 	char			ptr[BUFFER_SIZE + 1];
-	char			*j;
+	char			*aux_ptr;
 	int				b;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line || read(fd, ptr, 0) < 0)
 		return (-1);
 	if (!next[fd])
 		next[fd] = ft_strndup("", 1);
-	j = ft_strchr(next[fd], '\n');
-	b = read(fd, ptr, BUFFER_SIZE);
-	while (!(j && (b > 0)))
+	aux_ptr = NULL;
+	b = 1;
+	while (!aux_ptr && (b > 0))
 	{
+		b = read(fd, ptr, BUFFER_SIZE);
 		ptr[b] = 0;
 		if (next[fd])
-			j = ft_strjoin(next[fd], ptr);
+			aux_ptr = ft_strjoin(next[fd], ptr);
 		else
-			j = ft_strndup(ptr, b);
+			aux_ptr = ft_strndup(ptr, b);
 		if (next[fd])
 			free(next[fd]);
-		next[fd] = j;
-		j = ft_strchr(next[fd], '\n');
-		b = read(fd, ptr, BUFFER_SIZE);
+		next[fd] = aux_ptr;
+		aux_ptr = ft_strchr(next[fd], '\n');
 	}
-	return (ft_ret(line, &next[fd], j));
+	return (ft_ret(line, &next[fd], aux_ptr));
 }
