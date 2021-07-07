@@ -1,7 +1,7 @@
 # minishell
 <h2>Working in progress</h2>
-
-<h3>Hey marinaldo when you write some stuff in the code tell me, of course we will check the commits, just let me know what you did</h3
+<h4>UPDATE 27/06/2021 </h4>
+ <h3>Hhey ma frend , e o seguinte para iniciar isso vai usar algumas coisas do minitalk , tipo ja tenho uma ideia de como comecar , pelo que estava lendo em um dos artigos preciso primeiro ler a linha .... tipo quando parece nos terminal o nome/pasta que estamos, dois pontos sinal de maior.... em breve vou coemcar com isso</h3
 
 <h4>Minishell is a pretty lenghty project. The hardest challenge so far. You have to do a lot of things and make sure everything runs smoothly and that it doesn't crash.
 
