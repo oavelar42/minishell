@@ -15,9 +15,10 @@
 
 /*
 quando utilizo "g_" sera sempre um valor global 
-g_signal e um valor global que e utilizado quando a biblioteca SIGNAL é usada 
+g_signal e g_flags, um valor global que e utilizado quando a biblioteca SIGNAL é usada 
 */
 
 int g_flags;
+int g_signal;
 
 #endif
