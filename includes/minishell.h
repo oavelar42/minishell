@@ -30,4 +30,11 @@ typedef struct s_shell
     int         enviar;
 }               t_shell;
 
+typedef struct s_cmmd
+{
+    char            *commands;
+    struct s_cmmd *next;
+}               t_cmmd;
+
+
 #endif

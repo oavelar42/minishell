@@ -6,37 +6,45 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 21:44:00 by oavelar           #+#    #+#              #
-#    Updated: 2021/06/22 21:45:50 by oavelar          ###   ########.fr        #
+#    Updated: 2021/07/19 21:50:31 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minishell
+NAME		= ./minishell
+NAME_MINI	= minishell
 
-CC			= gcc
+CC			= clang -Wall -Wextra -Werror
+RM			= rm -rf
 
-FLAGS		= -Wall -Wextra -Werror -fsanitize=address
+INCS_DIR	= includes
+MAIN_INC	= -I$(INCS_DIR)
+INCS		= $(shell find $(INCS_DIR) -type f -name "*.h")
 
-INCLUDE		= ./minishell.h
+SRCS_DIR 	= srcs
+SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.c")
 
-SRC_DIR		= srcs/
-
-SRC_FILES 	= main.c \
-
-SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJS		= $(SRCS:.c=.o)
 
 GREEN		= \033[1;32m
 BLUE		= \033[0;34m
 RED		= \033[1;31m
+CLEAR		= \033[0K\r\c
+OK			= [\033[32mOK\033[0m]
 COLOR_OFF	= \033[0m
 
-$(NAME) : $(OBJ) $(INCLUDE)
-	$(CC) -o $(NAME) $(OBJ) $(FLAGS)
-	@echo "$(GREEN)Minishell already to work...$(COLOR_OFF)"
+%.o			: %.c
+			@echo "[..] $(NAME_MINI)... compiling $*.c\r\c"
+			@$(CC) $(MAIN_INC) -c $< -o $@
+			@echo "$(CLEAR)"
 
 all : $(NAME)
 
+$(NAME)		: $(OBJS) $(OBJS_UTILS) $(INCS)
+			@$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
+			@echo "$(OK) $(NAME_MINI) compiled"
+
 clean :
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJS)
 	@echo "$(RED)---- All clean! ---- $(COLOR_OFF)"
 
 fclean :

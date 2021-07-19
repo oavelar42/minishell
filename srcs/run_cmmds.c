@@ -2,5 +2,30 @@
 
 void    run_cmds(int *ptr)
 {
-    //start in some days
+    int     count;
+    t_cmmd    *cmd;
+
+    cmd->commands;
+    if (cmd == NULL)
+        return ;
+    while (cmd)
+    {
+        if (cmd == '|')
+            count = treat_pipe(cmd); // just try something
+    }
+}
+
+int treat_pipe(t_cmmd *cmd)
+{
+    int len;
+    t_cmmd *new;
+
+    len = 1;
+    new = cmd;
+    while (new == '|')
+    {
+        len++;
+        new = new->next;
+    }
+    return (len);
 }
