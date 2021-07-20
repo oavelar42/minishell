@@ -1,10 +1,35 @@
 #include "minishell.h"
 /*
-to tentando fazer por de ma explicao desses sites e de alguns alunos da escola
+o que a funcao get_dir faz e aquela parte inicial do terminal quando aparece seu login
+EXEMPLO : esterco:$> sudo apt-get install pornhub
 */
-char    get_dir_with_pwd(char **send)
+char    *get_dir_with_pwd(char **send)
 {
-    //ja sei como comecar ....
+    int     count;
+    int     len;
+    char    *tmp;
+    char    *str;
+
+    count = -1;
+    tmp = ft_strdup("");  // não sei se vale a pena usar strdub .... vou pensar
+    while (send[++count])
+        if (ft_strcmp(send[count], "LOGIN"))
+        {
+            free(tmp);   // porque usar essas porra de malloc vai dar leaks mais cedo ou mais tarde
+            tmp = ft_strdup(send[++count]); // espero que não apareca leaks , em cas tenho valgrind ja vou ir olhando
+            return ;
+        }
+        tmp = ft_strjoin(tmp, ":"); //juntar as xenas , tmp vem com o login e com join agracendo ':' 
+        //
+        len = ft_strlen(str);
+        while (str[--len])
+            if (str[len] == '/')
+            {
+                tmp = ft_strjoin(tmp, &str[++len]);
+                return ;
+            }
+        free(str);
+        return (ft_strjoin(tmp, "$>"));
 }
 
 void    read_input(t_shell *ptr)

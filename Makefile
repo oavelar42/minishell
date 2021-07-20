@@ -6,22 +6,25 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 21:44:00 by oavelar           #+#    #+#              #
-#    Updated: 2021/07/19 21:50:31 by oavelar          ###   ########.fr        #
+#    Updated: 2021/07/20 11:23:16 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ./minishell
-NAME_MINI	= minishell
+NAME		= minishell
 
-CC			= clang -Wall -Wextra -Werror
+CC			= gcc -Wall -Wextra -Werror
 RM			= rm -rf
 
-INCS_DIR	= includes
+INCS_DIR	= ./includes/
 MAIN_INC	= -I$(INCS_DIR)
 INCS		= $(shell find $(INCS_DIR) -type f -name "*.h")
 
-SRCS_DIR 	= srcs
-SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.c")
+LIB_DIR		= ./libft/
+LIB_NAME	= $(LIB_DIR)libft.h
+
+SRCS_DIR 	= $(addprefix srcs/, \
+							minishell.c \
+							run_cmmds.c)
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -33,21 +36,24 @@ OK			= [\033[32mOK\033[0m]
 COLOR_OFF	= \033[0m
 
 %.o			: %.c
-			@echo "[..] $(NAME_MINI)... compiling $*.c\r\c"
-			@$(CC) $(MAIN_INC) -c $< -o $@
+			@$(CC) $(MAIN_INC) $(LIB_NAME) -c $< -o $@
+			@echo "[..] compiling $*.c\r\c"
 			@echo "$(CLEAR)"
+
+$(NAME)		: $(OBJS) $(INCS)
+			@make --silent -C $(LIB_DIR)
+			@$(CC) $(OBJS) -L $(LIB_DIR) $(LIB_NAME) $(MAIN_INC) -o $(NAME)
+			@echo "$(OK) $(NAME) compiled"
 
 all : $(NAME)
 
-$(NAME)		: $(OBJS) $(OBJS_UTILS) $(INCS)
-			@$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
-			@echo "$(OK) $(NAME_MINI) compiled"
-
 clean :
+	@$(MAKE) clean --silent -C $(LIB_DIR)
 	@$(RM) $(OBJS)
 	@echo "$(RED)---- All clean! ---- $(COLOR_OFF)"
 
 fclean :
+	@$(MAKE) fclean --silent -C $(LIB_DIR)
 	@$(RM) $(NAME)
 	@echo "$(RED) ---- All cleared! ---- $(COLOR_OFF)"
 
