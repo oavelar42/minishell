@@ -39,15 +39,16 @@ void    read_input(t_shell *ptr)
     while (1)
     {
         if (g_pwd)
-            free(g_pwd);
+            free(g_pwd); // porque preciso ter o ficheiro livre
         g_signal = 0;
         g_pwd = get_dir_with_pwd(ptr->enviar); //criar função para chegar ao diretório atual
-        write(1, g_pwd, 1);
+        ft_putstr(g_pwd); // write(1, g_pwd, 1); 
         get_next_line(&line); // vou usar o get next com apenas uma alteração que e quando utilizarmos algum comando vai para proxima linha
         
         if (g_signal != 8)
         // i need create one function for read comands    
             run_cmds(ptr);
+        free(ptr); //nao sei se precisa da free , masi como odeio esse malloc vamos a isso
     }
 }
 
@@ -76,7 +77,9 @@ void    signal_handler(int flag)
         if (g_flags == 1)
             write(1, "\n", 1);
         else
-            return (0);
+            write(1, "\n", 1);
+            ft_putstr(g_pwd); // pode dar merda , tomara _|_       
+            // return (0); tenho que retorna algo , porque qnd fazemos 'cmd + c' volta para o ficheiro atual
     }
     else if (flag == SIGQUIT)
         if (g_flags == 1)
@@ -85,11 +88,12 @@ void    signal_handler(int flag)
 
 int main(void)
 {
-    int ptr;
+    t_shell ptr;
 
     g_flags = 0;
     g_signal = 0;
     g_pwd = NULL;
+    init_struct_ptr(&ptr);
     signal(SIGINT, signal_handler); //SIGINT e interrupçao do programa (normalmente usado CMD + C)
     signal(SIGQUIT, signal_handler); //SIGQUIT tambem é abortar programa e é usado "CMD + \"
     read_input(&ptr);

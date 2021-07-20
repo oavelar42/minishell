@@ -6,7 +6,7 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 21:44:00 by oavelar           #+#    #+#              #
-#    Updated: 2021/07/20 11:23:16 by oavelar          ###   ########.fr        #
+#    Updated: 2021/07/20 16:04:11 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ LIB_NAME	= $(LIB_DIR)libft.h
 
 SRCS_DIR 	= $(addprefix srcs/, \
 							minishell.c \
-							run_cmmds.c)
+							run_cmmds.c \
+							init_all.c)
 
 OBJS		= $(SRCS:.c=.o)
 

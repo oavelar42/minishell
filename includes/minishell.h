@@ -26,8 +26,10 @@ int g_pwd;
 
 typedef struct s_shell
 {
-    int         check;
-    int         enviar;
+    char        args;
+    char        cmd;
+    char        **enviar;
+    char        base;
 }               t_shell;
 
 typedef struct s_cmmd
@@ -35,6 +37,12 @@ typedef struct s_cmmd
     char            *commands;
     struct s_cmmd *next;
 }               t_cmmd;
+
+void        init_struct_ptr(t_shell *ptr);
+
+
+void        run_cmds(int *ptr);
+int         treat_pipe(t_cmmd *cmd);
 
 
 #endif
