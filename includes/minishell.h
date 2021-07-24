@@ -1,48 +1,72 @@
-#ifndef MINISHELL_H
+#idndef MINISHELL_H
 # define MINISHELL_H
 
-//just add some ".h" that we may need in the future...
-
-# include <unistd.h>
-# include <errno.h>
-# include <error.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <string.h>
-# include <signal.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include "../libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include <dirent.h>
+# include <limits.h>
+# include <string.h>
+# include <errno.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/stat.h>
 
-/*
-quando utilizo "g_" sera sempre um valor global 
-g_signal e g_flags, um valor global que e utilizado quando a biblioteca SIGNAL é usada 
-uma ideia que vi por isso estou usando assim , nao sei se vai funcionar
-*/
+# define MINISHELL_LOOP 1
+# define ITS_ARG 4
+# define ITS_RDR 3
+# define NONE -1
 
-int g_flags;
-int g_signal;
-int g_pwd;
-
-typedef struct s_shell
+typedef struct	s_rdr
 {
-    char        args;
-    char        cmd;
-    char        **enviar;
-    char        base;
-}               t_shell;
+	char *kind;
+	char *arg;
+}		t_rdr;
 
-typedef struct s_cmmd
+typedef struct	s_line_symbol
 {
-    char            *commands;
-    struct s_cmmd *next;
-}               t_cmmd;
+	char symb;
+	int flag;
+}		t_line_symbol;
 
-void        init_struct_ptr(t_shell *ptr);
+typedef struct	s_env
+{
+	char *key;
+	char *val;
+}		t_env;
 
+typedef struct s_com
+{
+	int num_args;
+	int num_redir;
+	char *com;
+	char **args_new;
+	char pipe_out;
+	char pipe_in;
+	t_line_symbol **args;
 
-void        run_cmds(int *ptr);
-int         treat_pipe(t_cmmd *cmd);
+}		t_com;
 
+typedef struct s_msh
+{
+	t_list *env;
+	t_list *com;
+	t_line_symbol *line;
+	char *str;
+	char **env_args;
+	char **val_in_dir;
+	int return_code;
+	char token;
+	int fd_0;
+	int fd_1;
+	int pipe_fd[2];
+	int pipe_read_fd;
+	int rdr_type[2];
+	int rdr_fd[2];
+	int rdr_fd2[2];
+	int numwaits_pipe;
+}		t_msh;
 
-#endif
+t_list *g_mem;

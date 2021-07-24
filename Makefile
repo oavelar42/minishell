@@ -6,7 +6,7 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 21:44:00 by oavelar           #+#    #+#              #
-#    Updated: 2021/07/20 16:04:11 by oavelar          ###   ########.fr        #
+#    Updated: 2021/07/24 21:33:14 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,15 @@ LIB_DIR		= ./libft/
 LIB_NAME	= $(LIB_DIR)libft.h
 
 SRCS_DIR 	= $(addprefix srcs/, \
-							minishell.c \
-							run_cmmds.c \
-							init_all.c)
+							main.c \
+							aux/aux.c \
+							utils/utils.c)
 
 OBJS		= $(SRCS:.c=.o)
 
 GREEN		= \033[1;32m
 BLUE		= \033[0;34m
-RED		= \033[1;31m
+RED			= \033[1;31m
 CLEAR		= \033[0K\r\c
 OK			= [\033[32mOK\033[0m]
 COLOR_OFF	= \033[0m
