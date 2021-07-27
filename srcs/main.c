@@ -1,9 +1,34 @@
 #include "minishell.h"
 
+/*handle_signals function that will except ctrl-\ and ctrlc-
+SIGINT looks for ctrl-c which has a value of 2
+SIGQUIT looks for ctrl-\ which has a value of 9
+signal returns the previous value of func that's associated with the given signal. For example, if the previous value of func was SIG_IGN, the return value is also SIG_IGN*/
+
 void main_init(char **env, t_msh *msh)
 {
 	ft_bzero(msh, sizeof(t_msh));
-	
+	ft_environment(msh, env);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handle_signals);
+}
+
+void main_loop(t_msh *msh)
+{
+	while (MINISHELL_LOOP)
+	{
+		msh->line = NULL;
+		msh->com = NULL;
+		msh->str = readline("minishell> ");
+		if (!msh->str)
+		{
+			ft_putstr_fd("exit\n", 1);
+			break ;
+		}
+		add_history(msh->str);
+		msh->numwaits_pipes = 0;
+		msh->pipe_read_fd = 0;
+		ft_handle_process(msh);
 
 }
 
@@ -18,5 +43,6 @@ int main(int ac, char **av, char **env)
 		error_exit("Error: Memory allocate\n");
 	ft_lstadd_front(&g_mem, ft_lstnew(msh));
 	main_init(env, msh);
-		
+	main_loop(msh);
+	return (0);
 }
