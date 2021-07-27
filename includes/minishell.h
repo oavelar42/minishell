@@ -72,11 +72,11 @@ typedef struct s_msh
 t_list *g_mem;
 
 
-
+void	rl_replace_line(const char *a, int b);
 void	handle_signals(int signo);
-void error_exit(char *i);
-void ft_clear_oldpwd(t_msh *msh);
-void ft_environment(t_msh *msh, char **env);
-void main_init(char **env, t_msh *msh);
+void	error_exit(char *i);
+void	ft_clear_oldpwd(t_msh *msh);
+void	ft_environment(t_msh *msh, char **env);
+void	main_init(char **env, t_msh *msh);
 
 #endif

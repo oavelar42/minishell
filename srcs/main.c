@@ -13,7 +13,7 @@ void main_init(char **env, t_msh *msh)
 	signal(SIGINT, handle_signals);
 }
 
-/*void main_loop(t_msh *msh)
+void main_loop(t_msh *msh)
 {
 	while (MINISHELL_LOOP)
 	{
@@ -26,17 +26,18 @@ void main_init(char **env, t_msh *msh)
 			break ;
 		}
 		add_history(msh->str);
-		msh->numwaits_pipes = 0;
+		msh->numwaits_pipe = 0;
 		msh->pipe_read_fd = 0;
-		ft_handle_process(msh);
+		//ft_handle_process(msh);
+	}
 
-}*/
+}
 
 int main(int ac, char **av, char **env)
 {
 	t_msh *msh;
 	
-	if (ac > 1 || av)
+	if (ac > 1 || av[1])
 		error_exit("Error: Too Many Arguments\n");
 	msh = (t_msh *)malloc(sizeof(t_msh));
 	if (!msh)
