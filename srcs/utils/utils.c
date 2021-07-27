@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+#include <readline/readline.h>
 void	handle_signals(int signo)
 {
 	if (signo == SIGINT)

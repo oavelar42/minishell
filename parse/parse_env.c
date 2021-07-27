@@ -1,4 +1,4 @@
-#include "minishell.h"
+/*#include "minishell.h"
 
 
 int ft_get_dollar_utils(t_msh *msh, int *beg, int *end_str, int *val)
@@ -27,7 +27,7 @@ int ft_get_dollar(t_msh *msh)
 			if (((ft_isalnum(msh->line[beg].symb) == 0)
 					&& msh->line[beg].symb != '_'
 					&& msh->line[beg].symb != '?'
-					|| msh->line[beg].flag == 1)
+					|| msh->line[beg].flag == 1))
 					continue ;
 			if (!ft_get_dollar_utils(msh, &beg, &end_str, &val))
 				return (0);
@@ -38,3 +38,4 @@ int ft_get_dollar(t_msh *msh)
 	}
 	return (1);
 }
+*/

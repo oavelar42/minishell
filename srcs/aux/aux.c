@@ -1,5 +1,7 @@
-#include "minishell.c"
-OLDPWD (OLDPrintWorkingDirectory) contains directory before the last cd command:
+#include "minishell.h"
+
+//OLDPWD (OLDPrintWorkingDirectory) contains directory before the last cd command:
+
 void ft_clear_oldpwd(t_msh *msh)
 {
 	t_list *list;
@@ -24,17 +26,17 @@ void ft_environment(t_msh *msh, char **env)
 	t_env *envp;
 
 	x = -1;
-	while(env[++i])
+	while(env[++x])
 	{
 		envp = malloc(sizeof(t_env));
 		if (!envp)
 			error_exit("Error: Memory Allocation\n");
-		ft_lstadd_front(g_mem, ft_lstnew(envp));
+		ft_lstadd_front(&g_mem, ft_lstnew(envp));
 		new_lst = ft_lstnew(envp);
 		if (!new_lst)
 			error_exit("Error: problem with create list\n");
 		ft_lstadd_front(&g_mem, ft_lstnew(new_lst));
-		msh->env_args = ft_split(env[i], '=');
+		msh->env_args = ft_split(env[x], '=');
 		if (!msh->env_args)
 			error_exit("Error: str split error\n");
 		envp->key = msh->env_args[0];

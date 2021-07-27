@@ -1,4 +1,4 @@
-#idndef MINISHELL_H
+#ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "../libft/libft.h"
@@ -70,3 +70,13 @@ typedef struct s_msh
 }		t_msh;
 
 t_list *g_mem;
+
+
+
+void	handle_signals(int signo);
+void error_exit(char *i);
+void ft_clear_oldpwd(t_msh *msh);
+void ft_environment(t_msh *msh, char **env);
+void main_init(char **env, t_msh *msh);
+
+#endif

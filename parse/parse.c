@@ -1,4 +1,4 @@
-#include "minishell.h"
+/*#include "minishell.h"
 
 void	ft_handle_process(t_msh *msh)
 {
@@ -8,4 +8,4 @@ void	ft_handle_process(t_msh *msh)
 	int num;;
 		
 
-}
+}*/

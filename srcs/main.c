@@ -13,7 +13,7 @@ void main_init(char **env, t_msh *msh)
 	signal(SIGINT, handle_signals);
 }
 
-void main_loop(t_msh *msh)
+/*void main_loop(t_msh *msh)
 {
 	while (MINISHELL_LOOP)
 	{
@@ -30,14 +30,14 @@ void main_loop(t_msh *msh)
 		msh->pipe_read_fd = 0;
 		ft_handle_process(msh);
 
-}
+}*/
 
 int main(int ac, char **av, char **env)
 {
 	t_msh *msh;
 	
 	if (ac > 1 || av)
-		error_exit("Error: Too Many Arguments\n);
+		error_exit("Error: Too Many Arguments\n");
 	msh = (t_msh *)malloc(sizeof(t_msh));
 	if (!msh)
 		error_exit("Error: Memory allocate\n");
