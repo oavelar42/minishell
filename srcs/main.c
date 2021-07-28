@@ -59,3 +59,7 @@ int main(int ac, char **av, char **env)
 	main_loop(msh);
 	return (0);
 }
+
+
+
+//ola merda meu git foi a merda

@@ -81,7 +81,7 @@ void	ft_environment(t_msh *msh, char **env);
 void	main_init(char **env, t_msh *msh);
 
 #endif
-aaaaaaaaaaaaaaaaaaaaaaaa
+/*aaaaaaaaaaaaaaaaaaaaaaaa
 
 
 
@@ -89,4 +89,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 
 
-aaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaa*/
+
+/* vhuvhjglhgkljhkjhkçjhkljhlkjhbjklhkjhkljhklhkjhlkjhkj*/
