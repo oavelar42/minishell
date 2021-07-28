@@ -7,10 +7,5 @@ void	ft_handle_process(t_msh *msh)
 	int i;
 	int num;
 		
-	i = 0;
-	command = NULL;
-	while(msh->line[i].symb)
-	{
-		
-	}
+
 }

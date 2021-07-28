@@ -55,10 +55,6 @@ int main(int ac, char **av, char **env)
 	if (!msh)
 		error_exit("Error: Memory allocate\n");
 	ft_lstadd_front(&g_mem, ft_lstnew(msh));
-	int x = -1;
-	while(env[++x])
-		printf("%s\n", env[x]);
-	printf("\n\n\n %d", x);
 	main_init(env, msh);
 	main_loop(msh);
 	return (0);
