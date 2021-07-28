@@ -17,7 +17,7 @@ LIBFT 			=  libft/libft.a
 HEADER			=  ./includes/
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror -g -I $(HEADER)
+CFLAGS			=	-Wall -Wextra -Werror -g -I $(HEADER) #-fsanitize=address
 
 RM				=	rm -rf
 
