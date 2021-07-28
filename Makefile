@@ -38,10 +38,10 @@ $(LIBFT) :
 		make -C ./libft
 
 clean:
-	$(RM) $(OBJS) $(NAME)
-
+	$(RM) $(OBJS) $(NAME) 
+	make clean -C libft 
 fclean: clean
-	$(RM) out
+	$(RM) $(LIBFT) out
 
 re:	fclean all
 
