@@ -13,6 +13,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
+# include <signal.h>
 
 # define MINISHELL_LOOP 1
 # define ITS_ARG 4
