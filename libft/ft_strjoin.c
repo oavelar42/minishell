@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oavelar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: legunshi <legunshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/19 14:16:26 by oavelar           #+#    #+#             */
-/*   Updated: 2021/04/10 14:37:11 by oavelar          ###   ########.fr       */
+/*   Created: 2020/11/03 15:35:48 by legunshi          #+#    #+#             */
+/*   Updated: 2020/11/10 18:28:33 by legunshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ptr;
-	int		count;
-	int		count2;
-	int		len_s1;
-	int		len_s2;
+	int		i;
+	char	*string;
 
-	len_s1 = 0;
-	len_s2 = 0;
-	while (s1[len_s1])
-		len_s1++;
-	while (s2[len_s2])
-		len_s2++;
-	ptr = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (!ptr)
-		return (0);
-	count = 0;
-	count2 = 0;
-	while (s1[count])
-		ptr[count2++] = s1[count++];
-	count = 0;
-	while (s2[count])
-		ptr[count2++] = s2[count++];
-	ptr[count2] = '\0';
-	return (ptr);
+	if (!s1 || !s2)
+		return (ft_strdup(""));
+	string = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!string)
+		return (NULL);
+	i = 0;
+	while (*s1)
+	{
+		string[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2)
+	{
+		string[i] = *s2;
+		i++;
+		s2++;
+	}
+	string[i] = '\0';
+	return (string);
 }
