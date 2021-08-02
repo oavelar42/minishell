@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_env_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 10:35:49 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 13:28:40 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 int	ft_get_symbol_flag_utils(t_msh *msh, const int *i, int qte)
 {
-	if (!qte || (qte == 2 && (msh->str[*i + 1] == '$' || msh->str[*i + 1] == '\\'
+	if (!qte || (qte == 2 && (msh->str[*i + 1] == '$'
+				|| msh->str[*i + 1] == '\\'
 				|| msh->str[*i + 1] == '"')))
 		return (1);
 	return (0);
 }
 
-char 	*ft_get_env(t_msh *msh, char *val)
+char	*ft_get_env(t_msh *msh, char *val)
 {
 	t_list	*list;
 

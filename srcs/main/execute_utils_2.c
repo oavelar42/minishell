@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_utils_2.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 11:07:36 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 11:45:34 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void 	ft_launch_com_utils(t_msh *msh, char *buff, char **argv)
+void	ft_launch_com_utils(t_msh *msh, char *buff, char **argv)
 {
 	if (buff == NULL)
 	{

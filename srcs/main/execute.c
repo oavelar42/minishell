@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 11:07:20 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 11:20:00 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -90,7 +101,7 @@ void	ft_launch_extra(char **buff, t_com *com, t_msh *msh)
 	*buff = ft_strdup(com->com);
 }
 
-void 	ft_launch_com(t_msh *msh, t_com *com)
+void	ft_launch_com(t_msh *msh, t_com *com)
 {
 	char	**exec_paths;
 	char	**argv;

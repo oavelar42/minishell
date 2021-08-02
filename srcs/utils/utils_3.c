@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_3.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 10:34:33 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 13:27:18 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -29,7 +40,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-char 	**ft_get_envs(t_msh *msh)
+char	**ft_get_envs(t_msh *msh)
 {
 	t_list	*list;
 	char	**envs;

@@ -3,57 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legunshi <legunshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oavelar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 13:31:57 by legunshi          #+#    #+#             */
-/*   Updated: 2020/11/15 18:42:02 by legunshi         ###   ########.fr       */
+/*   Created: 2021/02/23 16:17:00 by oavelar           #+#    #+#             */
+/*   Updated: 2021/04/10 14:41:59 by oavelar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_len(long n)
+static int	get_size(int n)
 {
-	int		len;
-
-	len = 0;
 	if (n < 0)
+		return (-n);
+	return (n);
+}
+
+static int	get_len(int n)
+{
+	int	count;
+
+	count = 0;
+	if (n <= 0)
+		++count;
+	while (n != 0)
 	{
-		n = n * -1;
-		len++;
-	}
-	while (n > 0)
-	{
+		++count;
 		n = n / 10;
-		len++;
 	}
-	return (len);
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	long	nb;
-	int		i;
+	char	*res;
+	int		count;
 
-	nb = n;
-	if (nb == 0)
-		return (ft_strdup("0"));
-	i = ft_len(nb);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	count = get_len(n);
+	res = malloc(sizeof(char) * (count + 1));
+	if (res == NULL)
 		return (NULL);
-	str[i--] = '\0';
-	if (nb < 0)
+	res[count] = '\0';
+	if (n < 0)
+		res[0] = '-';
+	else if (n == 0)
+		res[0] = '0';
+	while (n != 0)
 	{
-		str[0] = '-';
-		nb = nb * (-1);
+		--count;
+		res[count] = get_size(n % 10) + '0';
+		n = n / 10;
 	}
-	while (nb > 0)
-	{
-		str[i] = '0' + (nb % 10);
-		nb = nb / 10;
-		i--;
-	}
-	return (str);
+	return (res);
 }

@@ -1,101 +1,97 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split.c                                          :+:      :+:    :+:  */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legunshi <legunshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oavelar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 18:54:29 by legunshi          #+#    #+#             */
-/*   Updated: 2020/11/15 19:08:35 by legunshi         ###   ########.fr       */
+/*   Created: 2021/02/23 16:17:00 by oavelar           #+#    #+#             */
+/*   Updated: 2021/04/10 14:41:59 by oavelar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**ft_malloc_error(char **tab)
+static int	ft_count(char const *s, char c)
 {
-	unsigned int	i;
+	int	i;
+	int	words;
 
+	words = 0;
 	i = 0;
-	while (tab[i])
+	while (s[i])
 	{
-		free(tab[i]);
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			words++;
 		i++;
 	}
-	free(tab);
+	return (words);
+}
+
+static int	ft_wordlen(char const *s, char c)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (s[i] != c && s[i] != '\0')
+	{
+		i++;
+		len++;
+	}
+	return (len);
+}
+
+static void	*leak(char **ptr, int words)
+{
+	int	i;
+
+	i = 0;
+	while (i < words)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
 	return (NULL);
 }
 
-static unsigned int	ft_nb_strs(char const *s, char c)
+static char	**fill(char const *s, int words, char c, char **ptr)
 {
-	unsigned int	i;
-	unsigned int	nb_strs;
+	int		i;
+	int		j;
+	int		len;
 
-	if (!s[0])
-		return (0);
-	i = 0;
-	nb_strs = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	while (s[i])
+	i = -1;
+	while (++i < words)
 	{
-		if (s[i] == c)
-		{
-			nb_strs++;
-			while (s[i] && s[i] == c)
-				i++;
-			continue ;
-		}
-		i++;
+		while (*s == c)
+			s++;
+		len = ft_wordlen(s, c);
+		ptr[i] = (char *)malloc(sizeof(char) * (len + 1));
+		if (!(ptr[i]))
+			return (leak(ptr, i));
+		j = 0;
+		while (j < len)
+			ptr[i][j++] = *s++;
+		ptr[i][j] = '\0';
 	}
-	if (s[i - 1] != c)
-		nb_strs++;
-	return (nb_strs);
+	ptr[i] = NULL;
+	return (ptr);
 }
 
-static void	ft_next_str(char **nxt_s, unsigned int *nxt_s_len, char c)
+char	**ft_split(char	const *s, char c)
 {
-	unsigned int	i;
-
-	*nxt_s += *nxt_s_len;
-	*nxt_s_len = 0;
-	i = 0;
-	while (**nxt_s && **nxt_s == c)
-		(*nxt_s)++;
-	while ((*nxt_s)[i])
-	{
-		if ((*nxt_s)[i] == c)
-			return ;
-		(*nxt_s_len)++;
-		i++;
-	}
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char			**tab;
-	char			*next_str;
-	unsigned int	next_str_len;
-	unsigned int	nb_strs;
-	unsigned int	i;
+	char	**ptr;
+	int		words;
 
 	if (!s)
 		return (NULL);
-	nb_strs = ft_nb_strs(s, c);
-	tab = (char **)malloc(sizeof(char *) * (nb_strs + 1));
-	if (!tab)
+	words = ft_count(s, c);
+	ptr = (char **)malloc(sizeof(char *) * (words + 1));
+	if (!(ptr))
 		return (NULL);
-	i = -1;
-	next_str = (char *)s;
-	next_str_len = 0;
-	while (++i < nb_strs)
-	{
-		ft_next_str(&next_str, &next_str_len, c);
-		tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1));
-		if (!tab[i])
-			return (ft_malloc_error(tab));
-		ft_strlcpy(tab[i], next_str, next_str_len + 1);
-	}
-	tab[i] = NULL;
-	return (tab);
+	ptr = fill(s, words, c, ptr);
+	return (ptr);
 }

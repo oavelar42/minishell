@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 11:07:28 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 11:20:27 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -52,7 +63,7 @@ char	**ft_get_paths(t_msh *msh)
 	return (my_paths);
 }
 
-char 	*ft_join_com(t_msh *msh, t_com *com, char *path)
+char	*ft_join_com(t_msh *msh, t_com *com, char *path)
 {
 	char	*tmp;
 	char	*tmp2;

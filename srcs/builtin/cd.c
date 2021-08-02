@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 11:09:11 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/02 11:13:27 by oavelar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -18,7 +28,7 @@ void	ft_get_dir(t_msh *msh, char *key)
 	}
 }
 
-char 	*ft_get_home_path(t_msh *msh)
+char	*ft_get_home_path(t_msh *msh)
 {
 	t_list	*list;
 
