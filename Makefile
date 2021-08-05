@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/02 14:56:27 by oavelar           #+#    #+#              #
-#    Updated: 2021/08/02 15:50:38 by oavelar          ###   ########.fr        #
+#    Created: 2021/06/12 14:56:27 by oavelar           #+#    #+#              #
+#    Updated: 2021/08/05 16:10:37 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(NAME) : $(OBJS) $(HEADER)
 		@make --silent -C $(LIB_DIR)	
 		@$(CC) -lreadline -ltermcap -L ~/.brew/opt/readline/lib \
 			-I ~/.brew/opt/readline/include \
-		$(OBJS) -o $(NAME) $(LIBFT)
+		@$(OBJS) -o $(NAME) $(LIBFT)
 		@echo "$(OK) $(NAME) compiled"
 
 $(LIB_DIR) :

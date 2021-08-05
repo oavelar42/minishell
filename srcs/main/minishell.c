@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/02 11:07:14 by oavelar           #+#    #+#             */
-/*   Updated: 2021/08/02 11:46:07 by oavelar          ###   ########.fr       */
+/*   Created: 2021/06/02 11:07:14 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/05 16:13:47 by oavelar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	main_init(char **env, t_msh *msh)
 
 void	main_loop(t_msh *msh)
 {
-	while (MINISHELL_LOOP)
+	while (SHELL_LOOP)
 	{	
 		msh->line = NULL;
 		msh->com = NULL;

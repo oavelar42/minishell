@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/02 11:09:27 by oavelar           #+#    #+#             */
-/*   Updated: 2021/08/02 11:09:34 by oavelar          ###   ########.fr       */
+/*   Created: 2021/07/02 11:09:27 by oavelar           #+#    #+#             */
+/*   Updated: 2021/08/05 16:13:36 by oavelar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
+# include <signal.h>
 
-# define MINISHELL_LOOP 1
+# define SHELL_LOOP 1
 # define ITS_ARG 4
 # define ITS_RDR 3
 # define NONE -1
