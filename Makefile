@@ -6,22 +6,18 @@
 #    By: oavelar <oavelar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/12 14:56:27 by oavelar           #+#    #+#              #
-#    Updated: 2021/08/05 16:10:37 by oavelar          ###   ########.fr        #
+#    Updated: 2021/08/24 18:33:55 by oavelar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+CC			= gcc -Wall -Wextra -Werror -g -fsanitize=address
+RM			= rm -rf
+NAME		= minishell 
+INCS_DIR	= ./include/
+MAIN_INC	= -I$(INCS_DIR)
 
-RM	= rm -rf
-
-HEADER = ./include/
-
-LIB_DIR = ./libft/
-LIBFT = libft/libft.a
-
-CC = gcc
-
-CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER) #-fsanitize=address
+LIB_DIR		= ./libft/
+LIB_NAME	= $(LIB_DIR)libft.a
 
 SRCS =	srcs/main/minishell.c \
 	srcs/main/command.c \
@@ -60,31 +56,31 @@ OK			= [\033[32mOK\033[0m]
 RED			= \033[1;31m
 OFF			= \033[0m
 
-OBJS = $(SRCS:.c=.o)
+OBJS		= $(SRCS:.c=.o)
 
-all : $(NAME)
+%.o			: %.c
+			@$(CC) $(MAIN_INC) -c $< -o $@
 
-$(NAME) : $(OBJS) $(HEADER)
-		@make --silent -C $(LIB_DIR)	
-		@$(CC) -lreadline -ltermcap -L ~/.brew/opt/readline/lib \
+all			: $(NAME)
+
+$(NAME)		: $(OBJS) $(INCS)
+			@make --silent -C $(LIB_DIR)
+			@$(CC) -lreadline -ltermcap -L ~/.brew/opt/readline/lib \
 			-I ~/.brew/opt/readline/include \
-		@$(OBJS) -o $(NAME) $(LIBFT)
-		@echo "$(OK) $(NAME) compiled"
+			$(OBJS) $(LIB_NAME) -L$(LIB_DIR) $(MAIN_INC) -o $(NAME)
+			@echo "$(OK) $(NAME)compiled"
 
-$(LIB_DIR) :
-	make --silent -C ./libft
+clean:
+			@$(MAKE) clean --silent -C $(LIB_DIR)
+			@$(RM) $(OBJS)
+			@echo "$(RED)---- All clean! ---- $(COLOR_OFF)"
 
-clean :
-		@$(MAKE) clean --silent -C $(LIB_DIR)
-		@$(RM) $(OBJS)
-		@echo "$(RED)---- All clean! ---- $(COLOR_OFF)"
+fclean		:
+			@$(MAKE) fclean --silent -C $(LIB_DIR)
+			@$(RM) $(NAME)
+			@echo "$(RED) ---- All cleared! ---- $(COLOR_OFF)"
 
-fclean :
-		@$(MAKE) fclean --silent -C $(LIB_DIR)
-		@$(RM) $(OBJS) $(NAME)
-		@echo "$(RED) ---- All cleared! ---- $(COLOR_OFF)"
-
-re : fclean all
+re			: fclean all
 
 norme		:
 			@norminette $(SRCS) $(INCS) $(LIB_DIR)
